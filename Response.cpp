@@ -1,4 +1,5 @@
 #include "Response.hpp"
+#include <sstream>
 
 Response::Response() : code(200), message("OK") {
     std::cout << "Response created with default constructor" << std::endl;
@@ -48,6 +49,18 @@ void Response::setBody(const std::string& body) {
     this->body = body;
 }
 
+// std::string toString(const Response& response) {
+//     std::ostringstream oss;
+//     std::unordered_map<std::string, std::string>::const_iterator it = response.getHeaders().begin();
+//     while (it != response.getHeaders().end()) {
+//         oss << it->first << ": " << it->second << "\r\n";
+//         ++it;weq
+//     }
+//     oss << "\r\n" << response.getBody();
+//     return oss.str();
+// }
+
 void Response::send() const {
+    // should implement toString() logic to print response
     // to do
 }
