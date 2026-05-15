@@ -34,7 +34,7 @@ int Response::getCode() const {
 const std::string& Response::getMessage() const {
     return message;
 }
-const std::unordered_map<std::string, std::string>& Response::getHeaders() const {
+const std::map<std::string, std::string>& Response::getHeaders() const {
     return headers;
 }
 const std::string& Response::getBody() const {
@@ -49,18 +49,15 @@ void Response::setBody(const std::string& body) {
     this->body = body;
 }
 
-// std::string toString(const Response& response) {
-//     std::ostringstream oss;
-//     std::unordered_map<std::string, std::string>::const_iterator it = response.getHeaders().begin();
-//     while (it != response.getHeaders().end()) {
-//         oss << it->first << ": " << it->second << "\r\n";
-//         ++it;weq
-//     }
-//     oss << "\r\n" << response.getBody();
-//     return oss.str();
-// }
-
-void Response::send() const {
-    // should implement toString() logic to print response
-    // to do
+std::string Response::toString(const Response& response) const
+{
+    std::ostringstream oss;
+    std::map<std::string, std::string>::const_iterator it = response.getHeaders().begin();
+    while (it != response.getHeaders().end()) {
+        oss << it->first << ": " << it->second << "\r\n";
+        ++it;
+    }
+    oss << "\r\n" << response.getBody();
+    return oss.str();
 }
+

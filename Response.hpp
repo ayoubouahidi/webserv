@@ -1,13 +1,25 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <map>
+
+
+union Body
+{
+    std::string body_string;
+    std::iostream body_stream;
+    /* data */
+};
 
 class Response {
     private:
         int code;
         std::string message;
-        std::unordered_map<std::string, std::string> headers;
+        std::map<std::string, std::string> headers;
         std::string body;
+        int fd;
+        int flag_fg;
+
     public:
         Response();
         ~Response();
@@ -18,7 +30,13 @@ class Response {
         void setBody(const std::string& body);
         void send() const;
         int getCode() const;
+
         const std::string& getMessage() const;
-        const std::unordered_map<std::string, std::string>& getHeaders() const;
+        const std::map<std::string, std::string>& getHeaders() const;
         const std::string& getBody() const;
+        std::string toString(const Response& response) const;
+
+// 
+// get 
+// post 
 };
